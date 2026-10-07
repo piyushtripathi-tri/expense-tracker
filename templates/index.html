@@ -1,0 +1,45 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h3>Add Expense</h3>
+  <form class="add" action="/add" method="post">
+    <input type="text" name="title" placeholder="Title" required>
+    <input type="number" step="0.01" min="0" name="amount" placeholder="Amount" required>
+    <select name="category" required>
+      <option>Food</option><option>Travel</option><option>Shopping</option>
+      <option>Bills</option><option>Other</option>
+    </select>
+    <input type="date" name="date" required>
+    <button type="submit">Add</button>
+  </form>
+</div>
+
+<div class="card">
+  <div class="total">Total Spent: ₹{{ "%.2f"|format(total) }}</div>
+  {% for c in by_category %}
+    <div>{{ c.category }}: ₹{{ "%.2f"|format(c.total) }}</div>
+  {% endfor %}
+</div>
+
+<div class="card table-wrap">
+  <h3>All Expenses</h3>
+  {% if expenses %}
+  <table>
+    <tr><th>Date</th><th>Title</th><th>Category</th><th>Amount</th><th>Actions</th></tr>
+    {% for e in expenses %}
+    <tr>
+      <td>{{ e.date }}</td><td>{{ e.title }}</td><td>{{ e.category }}</td>
+      <td>₹{{ "%.2f"|format(e.amount) }}</td>
+      <td class="actions">
+        <a href="/edit/{{ e.id }}">Edit</a>
+        <form action="/delete/{{ e.id }}" method="post"><button class="danger" type="submit">Delete</button></form>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+    <p>No expenses yet. Add your first one above.</p>
+  {% endif %}
+</div>
+{% endblock %}
