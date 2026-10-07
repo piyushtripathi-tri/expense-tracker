@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Expense Tracker</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f6f8; margin: 0; color: #222; }
+    .container { max-width: 800px; margin: 0 auto; padding: 16px; }
+    h1 { text-align: center; }
+    .card { background: #fff; border-radius: 8px; padding: 16px; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0,0,0,.1); }
+    form.add { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; }
+    input, select, button { padding: 8px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; }
+    button { background: #2563eb; color: #fff; border: none; cursor: pointer; }
+    button.danger { background: #dc2626; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { text-align: left; padding: 8px; border-bottom: 1px solid #eee; }
+    .total { font-size: 22px; font-weight: bold; }
+    .actions { display: flex; gap: 6px; }
+    .actions a { padding: 8px; background: #6b7280; color: #fff; border-radius: 4px; text-decoration: none; font-size: 14px; }
+    .table-wrap { overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Personal Expense Tracker</h1>
+    {% block content %}{% endblock %}
+  </div>
+</body>
+</html>
